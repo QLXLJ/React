@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div>
+           <input type="text" v-model="usename">
+           <button value="添加" @click="add">添加</button>
+       </div>
+       <ul>
+           <!-- 只要使用到v-for的时候，一定要加key,否则选中的状态会紊乱 -->
+           <li v-for="item in list" :key="item.id">
+             <input type="checkbox">  {{item.id}}-----{{item.name}}
+            </li>
+       </ul>
+    </div>
+   <script>
+      var vm = new Vue({
+         el:"#app",
+         data:{
+            usename:'',
+             list:[
+                 {id : 1,name:'李白'},
+                 {id : 2,name:'李严'},
+                 {id : 3,name:'李清照'},
+                 {id : 4,name:'李信'}
+             ]
+         },
+         methods: {
+             add(){
+                 var newuse = {id:this.list.length+1,name:this.usename}
+                 this.list.unshift(newuse)
+             }
+         }
+      })
+   </script>
+</body>
+</html>
